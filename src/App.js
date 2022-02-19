@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import Button from "./components/Button";
+import Counter from "./components/Counter";
+import Div from "./components/Div";
+import Dummy from "./components/Dummy";
+import View from "./components/View";
+import CounterProvider from "./context/CounterProvider";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CounterProvider>
+        <Div>
+          <View />
+        </Div>
+        <Button />
+      </CounterProvider>
+      <Counter>
+        {({ counter, increment }) => {
+          return (
+            <>
+              <h1>Header</h1>
+              <Div>
+                <p>counter value: {counter}</p>
+                <button onClick={increment}> increment</button>
+              </Div>
+            </>
+          );
+        }}
+      </Counter>
+      <Counter>
+        {({ counter, increment }) => {
+          return (
+            <>
+              <h2></h2>
+              <p>counter value: {counter}</p>
+              <div>
+                <div>
+                  <button onClick={increment}> increment</button>
+                </div>
+              </div>
+            </>
+          );
+        }}
+      </Counter>
+      <Dummy />
     </div>
   );
 }
